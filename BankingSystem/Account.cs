@@ -8,75 +8,37 @@ using System.Threading.Tasks;
 
 namespace BankingSystem
 {
-    public class Account : IAccount
+    public class Account 
     {
-        private string accountNumber;
-        private string accountHolder;
-        private decimal balance;
-        private CurrencyType currency;
-        private DateTime openDate;
-        private DateTime? closingDate;
-
-
-        public Account(string accountNumber, string accountHolder, decimal initialBalance, CurrencyType currency, DateTime openDate, DateTime? closingDate)
+        private readonly IAccountOperationsHandler _operationsHandler;
+        private readonly IDataIntegrator _integrator;
+        public Account(IAccountOperationsHandler operationsHandler, IDataIntegrator dataIntegrator)
         {
-            this.accountNumber = accountNumber;
-            this.accountHolder = accountHolder;
-            this.balance = initialBalance;
-            this.currency = currency;
-            this.openDate = openDate;
-            this.closingDate = closingDate;
+            _operationsHandler = operationsHandler; 
+            _integrator = dataIntegrator;
         }
-
         public void Deposit(decimal amount)
         {
-            balance += amount;
-            Console.WriteLine($"Deposited {FormatAmount(amount, currency)}. New balance: {FormatAmount(balance, currency)}");
+            _operationsHandler.Deposit(amount);
+            _integrator.Write(content: $"Deposit from account with amount {amount}, current balance {_operationsHandler.GetBalance()}");
         }
 
         public void Withdraw(decimal amount)
         {
-            if (amount <= balance)
-            {
-                balance -= amount;
-                Console.WriteLine($"Withdrawn {FormatAmount(amount, currency)}. New balance: {FormatAmount(balance, currency)}");
-            }
-            else
-            {
-                Console.WriteLine("Insufficient funds.");
-            }
+           _operationsHandler.Withdraw(amount);
+            _integrator.Write(content: $"Withdraw from account with amount {amount}, current balance {_operationsHandler.GetBalance()}");
+
         }
 
-        public decimal GetAccountBalance()
+        public decimal GetBalance()
         {
-            return balance;
+            return _operationsHandler.GetBalance();
         }
 
-        public void DisplayAccountDetails()
+        public string GetDescription()
         {
-            Console.WriteLine($"Account Number: {accountNumber}");
-            Console.WriteLine($"Account Holder: {accountHolder}");
-            Console.WriteLine($"Balance: {balance}");
-            Console.WriteLine($"Currency: {currency}");
-            Console.WriteLine($"OpenDate: {openDate}");
-            Console.WriteLine($"ClosingDate: {closingDate}");
+            return _operationsHandler.GetDescription();   
         }
-
-        private string FormatAmount(decimal amount, CurrencyType currency)
-        {
-            switch (currency)
-            {
-                case CurrencyType.USD:
-                    return $"${amount}";
-                case CurrencyType.EUR:
-                    return $"€{amount}";
-                case CurrencyType.AMD:
-                    return $"{amount} ֏";
-                case CurrencyType.RUB:
-                    return $"{amount} ₽";
-                default:
-                    return $"{amount} {currency}";
-            }
-        }
+        
     }
 }

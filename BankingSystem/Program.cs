@@ -1,31 +1,21 @@
 ﻿using BankingSystem;
+using BankingSystem.AccountOperationsHandlers;
 using BankingSystem.Common;
 using BankingSystem.Common.Enums;
 using BankingSystem.Contracts;
+using BankingSystem.DataIntegrator;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
-IAccount basicAccount = new Account("123", "John Doe", 1000, CurrencyType.EUR, DateTime.Parse("2020-11-01"), DateTime.Parse("2029-12-20"));
-
-IAccount checkingAccount = new CheckingAccount(basicAccount, 500);
-
-IAccount savingsAccount = new SavingsAccount(basicAccount, 0.03m);
-
-IAccount fixedDepositAccount = new FixedDepositAccount(savingsAccount, DateTime.Now.AddYears(1));
-
-//IAccount fixedDepositAccount2 = new FixedDepositAccount(savingsAccount, DateTime.Parse("2022-11-01"));
-//checkingAccount.Deposit(200);
-//checkingAccount.Withdraw(800);
-
-//savingsAccount.Deposit(500);
-//savingsAccount.Withdraw(200);
-//((SavingsAccount)savingsAccount).CalculateInterest();
-
-fixedDepositAccount.Deposit(1000);
-fixedDepositAccount.Withdraw(500);
+var savingAccount = new Account(new SavingAccountOperationsHandler(balance: 100), new TextFileDataIntegrator());
+savingAccount.Deposit(amount: 10);
+savingAccount.Withdraw(amount: 20);
 
 
-Console.WriteLine("\nAccount Information:");
-//basicAccount.DisplayAccountDetails();
-//checkingAccount.DisplayAccountDetails();
-//savingsAccount.DisplayAccountDetails();
-fixedDepositAccount.DisplayAccountDetails();
+var checkingAccount = new Account(new CheckingAccountOperationsHandler(balance: 100, overdraftLimit:20), new TextFileDataIntegrator());
+checkingAccount.Deposit(amount: 10);
+checkingAccount.Withdraw(amount: 20);
+
+
+var fixedDepositAccount = new Account(new FixedDepositAccountOperationsHandler(balance: 100,age:20), new TextFileDataIntegrator());
+fixedDepositAccount.Deposit(amount: 10);
+fixedDepositAccount.Withdraw(amount: 20);
