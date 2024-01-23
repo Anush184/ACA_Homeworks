@@ -24,9 +24,9 @@ namespace CustomCollection
 
         public void Add(T item)
         {
-            EnsureCapacity();
-            _items[Count] = item;
-            Count++;
+           EnsureCapacity();
+           _items[Count] = item;
+           Count++;
 
             OnElementAdded(new ElementChangedEventArgs<T>(item));
 
