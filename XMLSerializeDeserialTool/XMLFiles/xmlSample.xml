@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<company name="Acme Corporation" registration_number="123456789">
+	<employees>
+		<employee id="1">
+			<name>John Doe</name>
+			<position title="Senior Software Engineer" level="3"/>
+			<department id="101" name="Engineering">
+				<head>Michael Johnson</head>
+				<location>Building A, Floor 2</location>
+			</department>
+			<contact>
+				<email type="work">john.doe@example.com</email>
+				<email type="personal">johndoe@gmail.com</email>
+				<phone type="work">+1234567890</phone>
+			</contact>
+			<projects>
+				<project id="201" name="Project X">
+					<description>An innovative project aimed at revolutionizing the industry.</description>
+					<status>Ongoing</status>
+				</project>
+				<project id="202" name="Project Y">
+					<description>A collaborative effort with international partners.</description>
+					<status>Completed</status>
+				</project>
+			</projects>
+		</employee>
+		<employee id="2">
+			<name>Jane Smith</name>
+			<position title="Marketing Manager" level="4"/>
+			<department id="102" name="Marketing">
+				<head>Emily Davis</head>
+				<location>Building B, Floor 1</location>
+			</department>
+			<contact>
+				<email type="work">jane.smith@example.com</email>
+				<email type="personal">janesmith@yahoo.com</email>
+				<phone type="work">+1987654321</phone>
+			</contact>
+			<projects>
+				<project id="203" name="Product Launch">
+					<description>Planning and executing the launch of our latest product.</description>
+					<status>Upcoming</status>
+				</project>
+				<project id="204" name="Market Research">
+					<description>Analyzing market trends and consumer behavior.</description>
+					<status>In Progress</status>
+				</project>
+			</projects>
+		</employee>
+	</employees>
+</company>
+
