@@ -53,7 +53,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncConsoleTextFileEditor"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assignment7", "Assignment7", "{FDEB1D94-C4F7-4AC5-BC2D-83EBAAC10372}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLSerializeDeserialTool", "XMLSerializeDeserialTool\XMLSerializeDeserialTool.csproj", "{CB5C4342-E25D-486E-82CC-1B442E81D266}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XMLSerializeDeserialTool", "XMLSerializeDeserialTool\XMLSerializeDeserialTool.csproj", "{CB5C4342-E25D-486E-82CC-1B442E81D266}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LibraryDatabase", "LibraryDatabase", "{D5317F48-C9FA-4C1C-B5C4-60AD87AF103C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Documents\SQL Server Management Studio\Code Snippets\SQL\My Code Snippets\Homework.sql = ..\..\..\Documents\SQL Server Management Studio\Code Snippets\SQL\My Code Snippets\Homework.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
